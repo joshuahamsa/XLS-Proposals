@@ -20,7 +20,7 @@ By removing this limitation, the XRPL will be the first distributed ledger to su
 ## 1. Overview
 
 We propose:
-* Modifying `NFTokenOfferCreate` transaction type.
+* Modifying `NFTokenCreateOffer` transaction type.
 * Modifying `NFTokenOffer` ledger object.
 
 This feature will require an amendment, tentatively titled `NFTokenTrading`.
@@ -34,12 +34,7 @@ This feature will require an amendment, tentatively titled `NFTokenTrading`.
 | Field Name | Required? | JSON Type | Internal Type | Description |
 |------------|-----------|-----------|---------------|-------------|
 |`LedgerIndex`| ✔️|`string`|`Hash256`|The unique ID of theledger object.|
-|`LedgerEntryType`| ✔️|`string`|`UInt16`|The ledger object's type (`NFTokenOffer`).|
-|`Account`| ✔️|`string`|`AccountID`|The account that created the offer.|
-|`OwnerAccount`| ✔️|`string`|`AccountID`|The account received the offer.|
-|`NFTokenID`| ✔️|`string`|`UInt16`|The NFT owned by the counter-party.|
-|`NFTokenIssuer`| ✔️|`string`|`UInt16`|The issuer of the counter-party's NFT.|
-|`Currency`| ✔️|`string`|`STArray`|The medium of exchange.|
+
 
 #### 2.1.1. Object ID
 
@@ -49,7 +44,7 @@ This feature will require an amendment, tentatively titled `NFTokenTrading`.
 
 The `NFTokenOffer` object is not a [deletion blocker](https://xrpl.org/docs/concepts/accounts/deleting-accounts/#requirements).
 
-## 3. Transaction: `NFTokenOfferCreate`
+## 3. Transaction: `NFTokenCreateOffer`
 
 When offers are created using a non-XRP token / Issued Asset, the Array already requires the inclusion of the Issuer and the token ID (ticker) in hexadecimal format. By including the appropriate `Flag` the ledger recognizes that the ID string belongs to an `NFTokenID`.
 
@@ -57,8 +52,8 @@ When offers are created using a non-XRP token / Issued Asset, the Array already 
 
 | Field Name | Required? | JSON Type | Internal Type | Description |
 |------------|-----------|-----------|---------------|-------------|
-|`TransactionType`| ✔️|`string`|`UInt16`|The transaction type (`NFTokenOfferCreate`).|
-|`Account`| ✔️|`string`|`AccountID`|The account sending the transaction.|
+|`TransactionType`| ✔️|`string`|`UInt16`|The transaction type (`NFTokenCreateOffer`).|
+|`Account`| ✔️|`string`|`AccountID`|The account that initiated the transaction.|
 |`OwnerAccount`| ✔️|`string`|`AccountID`|The account receiving the transaction.|
 |`LedgerIndex`| ✔️|`string`|`Hash256`|The unique ID of theledger object.|
 |`NFTokenID`| ✔️|`string`|`UInt16`|The NFT owned by the counter-party.|
